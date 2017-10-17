@@ -13,9 +13,15 @@ class Api::ListsController < ApplicationController
     render 'api/shared/error', status: :unprocessable_entity
   end
 
+  def update
+    @list = List.find(params[:id])
+    @list.update!(list_params)
+    render :update, status: :updated
+  end
+
   private
 
   def list_params
-    params.require(:list).permit(:title)
+    params.require(:list).permit(:id, :title)
   end
 end
