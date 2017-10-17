@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :boards, only: [:index, :create, :show]
     resources :cards,  only: [:show, :create]
     resources :lists, only: [:create, :update]
+    resources :comments, only: [:create]
   end
 
   get '/ui/all_boards', to: 'ui#all_boards'
