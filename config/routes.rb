@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :boards, only: [:index, :create, :show]
-    resources :cards,  only: [:show]
+    resources :cards,  only: [:show, :create]
     resources :lists, only: [:create]
   end
 
@@ -18,5 +18,4 @@ Rails.application.routes.draw do
   get '/ui/move_card_popover', to: 'ui#move_card_popover'
   get '/ui/copy_card_popover', to: 'ui#copy_card_popover'
   get '/ui', to: 'ui#index'
-
 end

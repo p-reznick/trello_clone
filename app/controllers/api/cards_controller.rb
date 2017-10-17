@@ -4,9 +4,23 @@ class Api::CardsController < ApplicationController
     render :show
   end
 
+  def create
+    @card = Card.new(card_params)
+
+    if @card.save
+      render :create, status: :created
+    else
+      @error = @card.errors.full_messages.join(', ')
+      render 'api/shared/error', status: :unprocessable_entity
+    end
+  rescue ActionController::ParameterMissing
+    @error = "Invalid card data provided"
+    render 'api/shared/error', status: :unprocessable_entity
+  end
+
   private
 
   def card_params
-    params.require(:card).permit(:title)
+    params.require(:card).permit(:title, :list_id)
   end
 end
