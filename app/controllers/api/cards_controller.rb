@@ -6,7 +6,17 @@ class Api::CardsController < ApplicationController
   end
 
   def create
-    @card = Card.new(card_params)
+    new_params = {
+      list_id: params[:list_id],
+      title: params[:card][:title],
+      position: params[:card][:position],
+      description: params[:card][:description],
+      archived: params[:card][:archived],
+      due_date: params[:card][:due_date],
+      completed: params[:card][:completed],
+      labels: params[:card][:labels]
+    }
+    @card = Card.new(new_params)
 
     if @card.save
       render :create, status: :created
