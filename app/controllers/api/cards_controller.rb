@@ -1,6 +1,7 @@
 class Api::CardsController < ApplicationController
   def show
     @card = Card.find(params[:id])
+    @board_id = List.find(@card.list_id).board_id
     render :show
   end
 
