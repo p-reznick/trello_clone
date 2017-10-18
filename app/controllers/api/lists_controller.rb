@@ -1,6 +1,12 @@
 class Api::ListsController < ApplicationController
   def create
-    @list = List.new(list_params)
+    p list_params[:title]
+    properly_formed_params = {
+      board_id: list_params[:board_id],
+      title: list_params[:title]
+    };
+
+    @list = List.new(properly_formed_params)
 
     if @list.save
       render :create, status: :created
@@ -22,6 +28,6 @@ class Api::ListsController < ApplicationController
   private
 
   def list_params
-    params.require(:list).permit(:id, :title)
+    params.require(:list).permit(:board_id, :list, :title)
   end
 end
