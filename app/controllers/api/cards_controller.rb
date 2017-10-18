@@ -18,9 +18,23 @@ class Api::CardsController < ApplicationController
     render 'api/shared/error', status: :unprocessable_entity
   end
 
+  def update
+    @card = Card.find(params[:id])
+    @card.update!(card_params)
+    render :update, status: :updated
+  end
+
   private
 
   def card_params
-    params.require(:card).permit(:title, :list_id)
+    params.require(:card).permit(:id,
+                                 :title,
+                                 :list_id,
+                                 :position,
+                                 :description,
+                                 :archived,
+                                 :due_date,
+                                 :completed,
+                                 :labels)
   end
 end
