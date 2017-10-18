@@ -1,12 +1,8 @@
 class Api::ListsController < ApplicationController
+  skip_before_action :verify_authenticity_token
   def create
-    p list_params[:title]
-    properly_formed_params = {
-      board_id: list_params[:board_id],
-      title: list_params[:title]
-    };
-
-    @list = List.new(properly_formed_params)
+    new_params = {board_id: params[:board_id], title: params[:list][:title]}
+    @list = List.new(new_params)
 
     if @list.save
       render :create, status: :created
