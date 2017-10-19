@@ -25,8 +25,8 @@ const apiClient = {
       .then(callback)
       .catch(logError);
   },
-  getListsForBoards: function(callback) {
-    return axios.get(routes.BOARD_VIEW_URL)
+  getListsForBoard: function(callback, id) {
+    return axios.get(routes.BOARD_VIEW_URL + id)
       .then(unwrapData)
       .then(callback)
       .catch(logError);

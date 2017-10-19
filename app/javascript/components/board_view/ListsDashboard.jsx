@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-// import ListTile from './ListTile';
-// import ToggleableCreateBoardTile from './ToggleableCreateBoardTile';
+import ListItem from './ListItem';
 
 const ListsDashboard = props => (
-
-  <h3>Hello, world!</h3>
-
+    <div>
+      <ul>
+        {props.lists.map(list_item => {
+          <li><ListItem title={list_item.title}/></li>
+        })}
+      </ul>
+    </div>
 );
 
 ListsDashboard.contextTypes = {
