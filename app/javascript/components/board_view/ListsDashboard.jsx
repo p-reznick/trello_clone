@@ -5,9 +5,9 @@ import ListItem from './ListItem';
 const ListsDashboard = props => (
     <div>
       <ul>
-        {props.lists.map(list_item => {
-          <li><ListItem title={list_item.title}/></li>
-        })}
+        {props.lists.map((list_item, idx) => (
+          <ListItem key={idx} title={list_item.title} cards={list_item.cards} />
+        ))}
       </ul>
     </div>
 );

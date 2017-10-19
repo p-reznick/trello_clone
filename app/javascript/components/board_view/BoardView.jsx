@@ -22,7 +22,6 @@ class BoardView extends React.Component {
 
   allLists = () => {
     const store = this.context.store;
-    console.log(store.getState().lists);
     return store.getState().lists;
   }
 
