@@ -1,6 +1,10 @@
 class Api::CommentsController < ApplicationController
   def create
-    @comment = Comment.new(comment_params)
+    new_params = {
+      text: params[:comment][:text],
+      card_id: params[:card_id]
+    }
+    @comment = Comment.new(new_params)
 
     if @comment.save
       render :create, status: :created
