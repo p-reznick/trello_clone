@@ -30,7 +30,10 @@ class Application extends React.Component {
         <TopNav />
         <Switch>
           <Route path='/' exact component={BoardsDashboardContainer} />
-          <Route path='/board/2' component={BoardView}/>
+          <Route path='/boards/:id' component={BoardView} />
+          <Route render = {() => (
+            <h1>Invalid Route!</h1>
+          )} />
         </Switch>
       </div>
     );
