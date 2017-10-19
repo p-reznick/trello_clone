@@ -7,6 +7,7 @@ import statusReducer from '../reducers/StatusReducer';
 function reducer(state = {}, action) {
   return {
     boards: boardsReducer(state.boards, action),
+    lists: listsReducer(state.lists, action),
     status: statusReducer(state.status, action)
   };
 }
