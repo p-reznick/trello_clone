@@ -1,9 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class CardView extends React.Component {
   render() {
     return (
-      <li> -- {this.props.title}</li>
+      <li>
+        -- <Link to="">{this.props.title}</Link>
+      </li>
     )
   }
 }
