@@ -3,6 +3,7 @@ import ReduxThunk from 'redux-thunk';
 
 import boardsReducer from '../reducers/BoardsReducer';
 import statusReducer from '../reducers/StatusReducer';
+import listsReducer from '../reducers/ListsReducer';
 
 function reducer(state = {}, action) {
   return {

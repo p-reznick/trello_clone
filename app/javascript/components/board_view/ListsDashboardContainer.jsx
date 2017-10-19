@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import ListsDashboard from './ListsDashboard';
 
-import * as actions from '../../actions/ListActions';
+// import * as actions from '../../actions/ListActions';
 
 class ListsDashboardContainer extends React.Component {
   static contextTypes = {
@@ -28,10 +28,11 @@ class ListsDashboardContainer extends React.Component {
   render() {
     return (
       <div>
-        <ListsDashboard lists={this.allLists()} />
+        <h3>In ListsDashboardContainer</h3>
       </div>
     )
   }
 }
 
+// <ListsDashboard lists={this.allLists()} />
 export default ListsDashboardContainer;

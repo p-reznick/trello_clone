@@ -28,8 +28,10 @@ class Application extends React.Component {
     return (
       <div>
         <TopNav />
-        <Route path='/' exact component={BoardsDashboardContainer} />
-        <Route path='/boards/2' exact component={BoardView} />
+        <Switch>
+          <Route path='/' exact component={BoardsDashboardContainer} />
+          <Route path='/board/2' component={BoardView}/>
+        </Switch>
       </div>
     );
   }
