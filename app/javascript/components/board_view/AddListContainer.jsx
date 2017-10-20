@@ -1,35 +1,45 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AddListForm from './AddListForm';
+import AddListFormContainer from './AddListFormContainer';
 
 class AddListContainer extends React.Component {
   state = {
     showForm: false
   };
   
-  componentDidMount() {
-    this.setState({
-      showForm: false
-    })
-  }
+  handleButtonClick = (e) => {
+    e.preventDefault();
 
-  componentWillUnmount() {
-    this.unsubscribe();
-  }
-
-  openForm = (e) => (
     this.setState({
       showForm: true
-    })
-  )
+    });
+  }
+
+  handleFormCloseClick = (e) => {
+    e.preventDefault();
+
+    this.setState({
+      showForm: false
+    });
+  }
+
+  handleSave = () => {
+    this.setState({
+      showForm: false
+    });
+  };
+
   render() {
     if (this.state.showForm) {
       return (
-        <AddListForm />
+        <AddListFormContainer
+          onCloseClick={this.handleFormCloseClick}
+          onSave={this.handleSave}
+        />
       );
     } else {
       return (
-        <button onClick={this.openForm}>Add a list</button>
+        <button onClick={this.handleButtonClick}>Add a list</button>
       );
     }
 

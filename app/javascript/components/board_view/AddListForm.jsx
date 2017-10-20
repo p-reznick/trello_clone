@@ -1,35 +1,42 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class AddListForm extends React.Component {
-  submitForm = (e) => (
-    e.preventDefault()
-    const newList = { title: e.target.value };
+const AddListForm = (props) => (
+//  submitForm = (e) => (
+//    e.preventDefault()
+//    const newList = { title: e.target.value };
+//
+//    this.context.store.dispatch(
+//      actions.createList(newList, () => {
+//        this.setState({
+//          title: ''
+//        });
+//
+//        this.props.onSave();
+//      })
+//    );
+//
+//  );
 
-    this.context.store.dispatch(
-      actions.createList(newList, () => {
-        this.setState({
-          title: ''
-        });
+  <div>
+    <form onSubmit={props.onSubmit}>
+      <input
+        type='text'
+        name='listname'
+        placeholder='Enter a list name...'
+        value={props.title}
+        onChange={props.onTextChange}
+      />
+      <input type='submit' value='Save' />
+    </form>
+  </div>
+);
 
-        this.props.onSave();
-      })
-    );
-
-  );
-
-
-  render () {
-    return (
-      <div>
-        <form onSubmit={this.submitForm}>
-          <input type='text' name='listname' placeholder='Enter a list name...' />
-          <input type='submit' value='Save' />
-        </form>
-
-      </div>
-    );
-  }
-}
+AddListForm.propTypes = {
+  onCloseClick: PropTypes.func.isRequired,
+  onTextChange: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
+};
 
 export default AddListForm;
