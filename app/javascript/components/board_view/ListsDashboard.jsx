@@ -7,7 +7,7 @@ const ListsDashboard = props => (
     <div>
       <ul>
         {props.lists.map((list_item, idx) => (
-          <ListItem key={idx} title={list_item.title} cards={list_item.cards} />
+          <ListItem key={idx} title={list_item.title} cards={[]} />
         ))}
       </ul>
       <AddListContainer />
