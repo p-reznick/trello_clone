@@ -9,7 +9,7 @@ export function createListRequest() {
   return { type: types.CREATE_LIST_REQUEST };
 }
 
-export function createListSuccess(board) {
+export function createListSuccess(list) {
   return { type: types.CREATE_LIST_SUCCESS, list: list };
 }
 

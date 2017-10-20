@@ -7,13 +7,14 @@ import * as actions from '../../actions/ListActions';
 
 class BoardView extends React.Component {
   static contextTypes = {
-    store: PropTypes.object.isRequired
+    store: PropTypes.object.isRequired,
   };
 
   componentDidMount() {
     const store = this.context.store;
     this.unsubscribe = store.subscribe(() => this.forceUpdate());
     store.dispatch(actions.fetchLists(this.props.match.params.id));
+    this.context.board_id = this.props.match.params.id;
   }
 
   componentWillUnmount() {

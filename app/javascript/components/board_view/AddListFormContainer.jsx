@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import { withRouter } from 'react-router'
 import AddListForm from './AddListForm';
 
 import * as actions from '../../actions/ListActions';
@@ -11,7 +11,8 @@ class AddListFormContainer extends React.Component {
   };
 
   static contextTypes = {
-    store: PropTypes.object
+    store: PropTypes.object,
+    board_id: PropTypes.number
   };
 
   static propTypes = {
@@ -27,8 +28,13 @@ class AddListFormContainer extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-
-    const newList = { title: this.state.title };
+    console.log(this);
+    const newList = {
+      board_id: this.props.match.params.id,
+      list: {
+        title: this.state.title
+      }
+    };
 
     this.context.store.dispatch(
       actions.createList(newList, () => {
@@ -53,4 +59,4 @@ class AddListFormContainer extends React.Component {
   };
 }
 
-export default AddListFormContainer;
+export default withRouter(AddListFormContainer);
