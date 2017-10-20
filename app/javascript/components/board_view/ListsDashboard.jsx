@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ListItem from './ListItem';
+import AddListContainer from './AddListContainer';
 
 const ListsDashboard = props => (
     <div>
@@ -9,6 +10,7 @@ const ListsDashboard = props => (
           <ListItem key={idx} title={list_item.title} cards={list_item.cards} />
         ))}
       </ul>
+      <AddListContainer />
     </div>
 );
 
