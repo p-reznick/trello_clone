@@ -19,16 +19,12 @@ const AddListForm = (props) => (
 //  );
 
   <div>
-    <form onSubmit={props.onSubmit}>
-      <input
-        type='text'
-        name='listname'
-        placeholder='Enter a list name...'
-        value={props.title}
-        onChange={props.onTextChange}
-      />
-      <input type='submit' value='Save' />
-    </form>
+    <input value={props.title} onChange={props.onTextChange} type="text" placeholder="Enter a list name..." />
+
+    <div>
+        <input type="submit" className="button" value="Save" onClick={props.onSubmit}/><i onCloseClick={this.handleButtonClick} className="x-icon icon"></i>
+    </div>
+
   </div>
 );
 

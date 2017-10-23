@@ -32,14 +32,30 @@ class AddListContainer extends React.Component {
   render() {
     if (this.state.showForm) {
       return (
-        <AddListFormContainer
-          onCloseClick={this.handleFormCloseClick}
-          onSave={this.handleSave}
-        />
+        // <AddListFormContainer
+          // onCloseClick={this.handleFormCloseClick}
+          // onSave={this.handleSave}
+        // />
+
+        <div>
+          <div id="new-list" className="new-list selected">
+          <input value={this.props.title} onChange={this.props.onTextChange} type="text" placeholder="Enter a list name..." />
+          </div>
+
+          <div>
+              <input type="submit" className="button" value="Save" onClick={this.props.onSubmit}/>
+          </div>
+
+        </div>
+
       );
     } else {
       return (
-        <button onClick={this.handleButtonClick}>Add a list</button>
+
+        <div id="new-list" className="new-list" onClick={this.handleButtonClick} ><span>Add a list...</span>
+
+
+        </div>
       );
     }
 

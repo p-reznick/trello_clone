@@ -28,13 +28,15 @@ class Application extends React.Component {
     return (
       <div>
         <TopNav />
-        <Switch>
-          <Route path='/' exact component={BoardsDashboardContainer} />
-          <Route path='/boards/:id' component={BoardView} />
-          <Route render = {() => (
-            <h1>Invalid Route!</h1>
-          )} />
-        </Switch>
+        <main>
+          <Switch>
+            <Route path='/' exact component={BoardsDashboardContainer} />
+            <Route path='/boards/:id' component={BoardView} />
+            <Route render = {() => (
+              <h1>Invalid Route!</h1>
+            )} />
+          </Switch>
+        </main>
       </div>
     );
   }
