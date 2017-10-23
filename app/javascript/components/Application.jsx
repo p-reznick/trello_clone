@@ -25,6 +25,7 @@ class Application extends React.Component {
   render() {
     const state = this.context.store.getState();
 
+    console.log(state);
     return (
       <div>
         <TopNav />

@@ -4,6 +4,7 @@ export default function listsReducer(state = [], action) {
   } else if (action.type === 'CREATE_LIST_SUCCESS') {
     const newList = action.list;
     newList.id = Number(newList.id);
+    newList.cards = [];
 
     return state.concat(newList);
   } else {
