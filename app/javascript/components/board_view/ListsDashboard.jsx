@@ -15,8 +15,8 @@ class ListsDashboard extends React.Component {
   render() {
 
     return (
-      <div>
-        <ul>
+      <div id="existing-lists" className="existing-lists">
+        <ul className="">
           {this.props.lists.map((list_item, idx) => {
             return (
               <ListItem key={idx} title={list_item.title} cards={list_item.cards} />

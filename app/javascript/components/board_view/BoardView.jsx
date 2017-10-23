@@ -28,7 +28,7 @@ class BoardView extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id="list-container" className="list-container">
         <ListsDashboard lists={this.allLists()}/>
       </div>
     )

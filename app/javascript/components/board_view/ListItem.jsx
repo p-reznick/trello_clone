@@ -7,7 +7,7 @@ class ListItem extends React.Component {
   render() {
     return (
       <div>
-        <li>{`${this.props.title}`}</li>
+        <li className="activity-list">{`${this.props.title}`}</li>
         <CardsListContainer cards={this.props.cards} />
       </div>
     );
