@@ -18,7 +18,7 @@ class Api::ListsController < ApplicationController
   def update
     @list = List.find(params[:id])
     @list.update!(list_params)
-    render :update, status: :updated
+    render :update
   end
 
   private

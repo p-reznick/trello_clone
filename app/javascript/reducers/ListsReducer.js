@@ -7,6 +7,16 @@ export default function listsReducer(state = [], action) {
     newList.cards = [];
 
     return state.concat(newList);
+  } else if (action.type === 'UPDATE_LIST_SUCCESS') {
+    return state.map((list) => {
+      if (list.id === action.list_id) {
+        const newList = {...list};
+        newList.title = action.title;
+        return newList;
+      } else {
+        return list;
+      }
+    });
   } else {
     return state;
   }

@@ -13,6 +13,8 @@ class ListsDashboard extends React.Component {
   }
 
   render() {
+  console.log("in ListsDashborad");
+  console.log(this.props.lists);
 
     return (
 
@@ -21,7 +23,7 @@ class ListsDashboard extends React.Component {
 
               {this.props.lists.map((list_item, idx) => {
                 return (
-                  <ListItem key={idx} title={list_item.title} cards={list_item.cards} />
+                  <ListItem key={idx} title={list_item.title} list_id={list_item.id} cards={list_item.cards} position={list_item.position} />
                 );
               })}
 

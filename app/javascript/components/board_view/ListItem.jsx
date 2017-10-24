@@ -30,11 +30,14 @@ class ListItem extends React.Component {
   };
 
   handleTitleSubmit = (e) => {
+    const store = this.context.store;
     if (e.type === 'blur' || e.key === 'Enter') {
       e.preventDefault();
-      store.dispatch({
-        title: this.state.newTitle,
-      });
+      console.log("in ListItem");
+      console.log(this.state.newTitle);
+      console.log(this.props.list_id);
+      console.log(this.props.position);
+      store.dispatch(actions.updateList(this.state.newTitle, this.props.list_id, this.props.position));
       this.setState({
         showTitle: true,
         newTitle: '',
@@ -58,7 +61,7 @@ class ListItem extends React.Component {
       )
     } else {
       return (
-        <input onBlur={this.handleTitleSubmit} onKeyUp={this.handleTitleSubmit} type="text" placeholder={`${this.props.title}`} />
+        <input onBlur={this.handleTitleSubmit} onKeyUp={this.handleTitleSubmit} onChange={this.handleTextInput} type="text" placeholder={`${this.props.title}`} />
       )
     }
   }
