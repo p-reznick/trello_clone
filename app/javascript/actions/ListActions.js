@@ -47,10 +47,6 @@ export function createList(list, callback) {
 export function updateList(title, list_id, position, callback) {
   return function(dispatch) {
     dispatch(updateListRequest());
-    console.log("in actions");
-    console.log(title);
-    console.log(position);
-    console.log(list_id);
     apiClient.updateList({title, position}, list_id, newList => {
       dispatch(updateListSuccess(newList))
 

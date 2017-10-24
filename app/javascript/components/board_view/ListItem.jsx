@@ -33,10 +33,7 @@ class ListItem extends React.Component {
     const store = this.context.store;
     if (e.type === 'blur' || e.key === 'Enter') {
       e.preventDefault();
-      console.log("in ListItem");
-      console.log(this.state.newTitle);
-      console.log(this.props.list_id);
-      console.log(this.props.position);
+      
       store.dispatch(actions.updateList(this.state.newTitle, this.props.list_id, this.props.position));
       this.setState({
         showTitle: true,

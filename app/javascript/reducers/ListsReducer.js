@@ -8,10 +8,11 @@ export default function listsReducer(state = [], action) {
 
     return state.concat(newList);
   } else if (action.type === 'UPDATE_LIST_SUCCESS') {
+    
     return state.map((list) => {
-      if (list.id === action.list_id) {
+      if (list.id === action.list.id) {
         const newList = {...list};
-        newList.title = action.title;
+        newList.title = action.list.title;
         return newList;
       } else {
         return list;
