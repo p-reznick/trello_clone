@@ -33,7 +33,7 @@ class ListItem extends React.Component {
     const store = this.context.store;
     if (e.type === 'blur' || e.key === 'Enter') {
       e.preventDefault();
-      
+
       store.dispatch(actions.updateList(this.state.newTitle, this.props.list_id, this.props.position));
       this.setState({
         showTitle: true,
@@ -72,6 +72,7 @@ class ListItem extends React.Component {
             <div>{this.getListTitleOutput()}</div>
 
             <CardsListContainer cards={this.props.cards} />
+            <div className="add-card-toggle" data-position="bottom">Add a card...</div>
           </div>
         </div>
       </div>

@@ -9,6 +9,7 @@ class CardsListContainer extends React.Component {
           <CardView key={idx} title={card.title} />
         ))}
       </div>
+      
     );
   }
 }
