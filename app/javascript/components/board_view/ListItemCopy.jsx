@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import CardsListContainer from './CardsListContainer.jsx';
 import * as actions from '../../actions/ListActions';
 
-class ListItem extends React.Component {
+class ListItemCopy extends React.Component {
   static contextTypes = {
     store: PropTypes.object.isRequired
   };
@@ -65,7 +65,7 @@ class ListItem extends React.Component {
 
   render() {
     return (
-      <div data-id={this.props.list_id} data-position={this.props.position} className="list-wrapper">
+      <div className="list-wrapper">
         <div className="list-background">
           <div className="list">
             <a className="more-icon sm-icon" href=""></a>
@@ -80,4 +80,4 @@ class ListItem extends React.Component {
   }
 }
 
-export default ListItem;
+export default ListItemCopy;
