@@ -13,6 +13,14 @@ class ListsDashboard extends React.Component {
   componentDidMount() {
     var container = ReactDOM.findDOMNode(document.querySelector(".existing-lists"));
     dragula([container]);
+    dragula.on('drop', (el, target, source, sibling) => {
+      const newListPosition = parseInt(get(target, 'position'));
+      const previousListPosition = parseInt(get(source, 'position'));
+      const rightPosition = get(sibling, 'position');
+      const itemPosition = get(el, 'position');
+      console.log(newListPosition);
+      console.log(previousListPosition);
+    });
   }
 
   render() {
