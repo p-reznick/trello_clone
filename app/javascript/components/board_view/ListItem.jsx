@@ -65,7 +65,7 @@ class ListItem extends React.Component {
 
   render() {
     return (
-      <div data-id={this.props.list_id} data-position={this.props.position} className="list-wrapper">
+      <div data-id={this.props.list_id} data-position={this.props.position} data-title={this.props.title} className="list-wrapper">
         <div className="list-background">
           <div className="list">
             <a className="more-icon sm-icon" href=""></a>
