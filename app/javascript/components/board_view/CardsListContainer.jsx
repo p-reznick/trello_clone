@@ -16,6 +16,11 @@ class CardsListContainer extends React.Component {
     this.unsubscribe();
   }
 
+  componentWillReceiveProps = (nextProps) => {
+    console.log("cardsListContainer receiving props");
+    console.log(nextProps);
+  }
+
   render() {
     return (
       <div id="cards-container">

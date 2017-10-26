@@ -66,6 +66,11 @@ class ListItem extends React.Component {
     }
   }
 
+  componentWillReceiveProps = (nextProps) => {
+    console.log("listItem receiving props");
+    console.log(nextProps);
+  }
+
   render() {
     return (
       <div data-id={this.props.list_id} data-position={this.props.position} data-title={this.props.title} className="list-wrapper">

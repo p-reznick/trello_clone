@@ -13,10 +13,11 @@ class ListsDashboard extends React.Component {
   };
 
   componentDidMount() {
-    this.allCards();
     const store = this.context.store;
+    this.unsubscribe = store.subscribe(() => this.forceUpdate());
     var container = ReactDOM.findDOMNode(document.querySelector(".existing-lists"));
     const dragula = Dragula([container]);
+
     dragula.on('drop', (el, target, source, sibling) => {
 
       const origLists = this.props.lists;
@@ -48,15 +49,8 @@ class ListsDashboard extends React.Component {
     });
   }
 
-  allCards = () => {
-    console.log("In allCards");
-    const cards = [];
-    this.props.lists.forEach(list => {
-      console.log("LIST:");
-      console.log(list);
-      cards.push(list.cards);
-    });
-    return cards;
+  componentWillUnmount() {
+    this.unsubscribe();
   }
 
   render() {
