@@ -8,7 +8,7 @@ export default function listsReducer(state = [], action) {
 
     return state.concat(newList);
   } else if (action.type === 'UPDATE_LIST_SUCCESS') {
-    
+
     return state.map((list) => {
       if (list.id === action.list.id) {
         const newList = {...list};
@@ -17,7 +17,7 @@ export default function listsReducer(state = [], action) {
       } else {
         return list;
       }
-    });
+    }).sort((a, b) => a.position - b.position);
   } else {
     return state;
   }

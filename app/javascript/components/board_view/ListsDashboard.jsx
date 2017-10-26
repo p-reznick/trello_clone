@@ -17,14 +17,9 @@ class ListsDashboard extends React.Component {
     var container = ReactDOM.findDOMNode(document.querySelector(".existing-lists"));
     const dragula = Dragula([container]);
     dragula.on('drop', (el, target, source, sibling) => {
-      console.log("Inside of drop handler");
-      console.log(el); // this is dragged element
-      console.log(target); // target container
-      console.log(source); // source container
-      console.log(sibling); // the previous element
-      // console.log(parseInt(sibling.dataset.position));
-      console.log(parseInt(el.dataset.position));
-      const origLists = this.props.lists.sort((a, b) => a.position - b.position);
+
+      const origLists = this.props.lists;
+
       let originalIdx;
       origLists.forEach((list, idx) => {
         if (list.id === parseInt(el.dataset.id)) {
@@ -32,21 +27,22 @@ class ListsDashboard extends React.Component {
         }
       });
 
-      let siblingIdx;
+
+      let targetIdx;
       if (sibling) {
         origLists.forEach((list, idx) => {
           if (list.id === parseInt(sibling.dataset.id)) {
-            siblingIdx = idx;
+            targetIdx = idx;
           }
         });
+        if (targetIdx > 0 && originalIdx < targetIdx) {
+          targetIdx -= 1;
+        }
       } else {
-        siblingIdx = origLists.length;
+        targetIdx = origLists.length - 1;
       }
 
-      // let newPosition = positionCalculator(this.props.lists, parseInt(sibling.dataset.position), parseInt(el.dataset.position, 10));
-      console.log(originalIdx);
-      console.log(siblingIdx);
-      let newPosition = positionCalculator(this.props.lists, siblingIdx, originalIdx);
+      let newPosition = positionCalculator(this.props.lists, targetIdx, originalIdx);
       store.dispatch(actions.updateList(el.dataset.title, el.dataset.id, newPosition));
     });
   }
