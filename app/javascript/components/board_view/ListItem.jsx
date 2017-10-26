@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import CardsListContainer from './CardsListContainer.jsx';
+import CardsListContainer from './CardsListContainer';
 import * as actions from '../../actions/ListActions';
+import ToggleableAddCard from './ToggleableAddCard';
 
 class ListItem extends React.Component {
   static contextTypes = {
@@ -12,6 +13,8 @@ class ListItem extends React.Component {
   componentDidMount() {
     const store = this.context.store;
     this.unsubscribe = store.subscribe(() => this.forceUpdate());
+    console.log("STORE:");
+    console.log(store.getState());
   }
 
   componentWillUnmount() {
@@ -70,9 +73,8 @@ class ListItem extends React.Component {
           <div className="list">
             <a className="more-icon sm-icon" href=""></a>
             <div>{this.getListTitleOutput()}</div>
-
             <CardsListContainer cards={this.props.cards} />
-            <div className="add-card-toggle" data-position="bottom">Add a card...</div>
+            <ToggleableAddCard list_id={this.props.list_id} />
           </div>
         </div>
       </div>

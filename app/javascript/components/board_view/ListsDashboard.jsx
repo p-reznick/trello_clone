@@ -13,6 +13,7 @@ class ListsDashboard extends React.Component {
   };
 
   componentDidMount() {
+    this.allCards();
     const store = this.context.store;
     var container = ReactDOM.findDOMNode(document.querySelector(".existing-lists"));
     const dragula = Dragula([container]);
@@ -45,6 +46,17 @@ class ListsDashboard extends React.Component {
       let newPosition = positionCalculator(this.props.lists, targetIdx, originalIdx);
       store.dispatch(actions.updateList(el.dataset.title, el.dataset.id, newPosition));
     });
+  }
+
+  allCards = () => {
+    console.log("In allCards");
+    const cards = [];
+    this.props.lists.forEach(list => {
+      console.log("LIST:");
+      console.log(list);
+      cards.push(list.cards);
+    });
+    return cards;
   }
 
   render() {

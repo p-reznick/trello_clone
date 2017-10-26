@@ -1,7 +1,21 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import CardView from './CardView.jsx'
 
 class CardsListContainer extends React.Component {
+  static contextTypes = {
+    store: PropTypes.object.isRequired
+  };
+
+  componentDidMount() {
+    const store = this.context.store;
+    this.unsubscribe = store.subscribe(() => this.forceUpdate());
+  }
+
+  componentWillUnmount() {
+    this.unsubscribe();
+  }
+
   render() {
     return (
       <div id="cards-container">
@@ -9,7 +23,7 @@ class CardsListContainer extends React.Component {
           <CardView key={idx} title={card.title} />
         ))}
       </div>
-      
+
     );
   }
 }

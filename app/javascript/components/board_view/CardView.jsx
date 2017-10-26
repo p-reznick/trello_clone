@@ -1,7 +1,21 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 class CardView extends React.Component {
+  static contextTypes = {
+    store: PropTypes.object.isRequired
+  };
+
+  componentDidMount() {
+    const store = this.context.store;
+    this.unsubscribe = store.subscribe(() => this.forceUpdate());
+  }
+
+  componentWillUnmount() {
+    this.unsubscribe();
+  }
+
   render() {
     return (
       <div className="card-background">
