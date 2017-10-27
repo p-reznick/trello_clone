@@ -14,6 +14,7 @@ class CardsListContainer extends React.Component {
     const store = this.context.store;
     this.unsubscribe = store.subscribe(() => this.forceUpdate());
     var attribute_selector = "[data-id='list-" + this.props.list_id + "-cards']";
+
     var container = ReactDOM.findDOMNode(document.querySelector(attribute_selector));
     const dragula = Dragula([container]);
     dragula.on('drop', this.dragulaHelper);
