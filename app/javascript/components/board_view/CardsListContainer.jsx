@@ -1,6 +1,9 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import CardView from './CardView.jsx'
+import positionCalculator from '../../lib/PositionCalculator.js';
+import Dragula from 'react-dragula';
 
 class CardsListContainer extends React.Component {
   static contextTypes = {
@@ -10,22 +13,48 @@ class CardsListContainer extends React.Component {
   componentDidMount() {
     const store = this.context.store;
     this.unsubscribe = store.subscribe(() => this.forceUpdate());
+    var container = ReactDOM.findDOMNode(document.querySelector("#cards-container"));
+    const dragula = Dragula([container]);
+    dragula.on('drop', this.dragulaHelper);
   }
+
+  dragulaHelper = (el, target, source, sibling) => {
+    console.log("Inside of CardListContainer dragula handler")
+    const store = this.context.store;
+    const origCards = this.getCards();
+
+    let originalIdx;
+    origCards.forEach((card, idx) => {
+      if (card.id === parseInt(el.dataset.id)) {
+        originalIdx = idx;
+      }
+    });
+
+    let targetIdx;
+    if (sibling) {
+      origCards.forEach((card, idx) => {
+        if (card.id === parseInt(sibling.dataset.id)) {
+          targetIdx = idx;
+        }
+      });
+      if (targetIdx > 0 && originalIdx < targetIdx) {
+        targetIdx -= 1;
+      }
+    } else {
+      targetIdx = origCards.length - 1;
+    }
+
+    let newPosition = positionCalculator(origCards, targetIdx, originalIdx);
+    // store.dispatch(actions.updateCard(el.dataset.title, el.dataset.id, newPosition));
+  };
 
   componentWillUnmount() {
     this.unsubscribe();
   }
 
-  componentWillReceiveProps = (nextProps) => {
-    console.log("cardsListContainer receiving props");
-    console.log(nextProps);
-  }
-
   getCards = () => {
     const store = this.context.store;
     const storeCards = store.getState().cards;
-    console.log("IN CardsListContainer:");
-    console.log(storeCards);
     return storeCards.filter(card => (
       (card.list_id === +this.props.list_id) && (card.board_id === +this.props.board_id)
     ));
@@ -36,7 +65,7 @@ class CardsListContainer extends React.Component {
     return (
       <div id="cards-container">
         {cards.map((card, idx) => (
-          <CardView key={idx} title={card.title} />
+          <CardView key={idx} title={card.title} id={card.id} />
         ))}
       </div>
 

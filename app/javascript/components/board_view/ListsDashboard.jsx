@@ -16,37 +16,49 @@ class ListsDashboard extends React.Component {
     const store = this.context.store;
     this.unsubscribe = store.subscribe(() => this.forceUpdate());
     var container = ReactDOM.findDOMNode(document.querySelector(".existing-lists"));
-    const dragula = Dragula([container]);
+    const dragula = Dragula([container], {
+      moves: this.moves,
+    });
 
-    dragula.on('drop', (el, target, source, sibling) => {
+    dragula.on('drop', this.dragulaHelper);
+  }
 
-      const origLists = this.props.lists;
+  moves = (el, container, handle) => {
+    if (handle.querySelector('.card-background')) {
+      return true;
+    } else {
+    return false;
+    }
+  };
 
-      let originalIdx;
+  dragulaHelper = (el, target, source, sibling) => {
+    const store = this.context.store;
+    const origLists = this.props.lists;
+
+    let originalIdx;
+    origLists.forEach((list, idx) => {
+      if (list.id === parseInt(el.dataset.id)) {
+        originalIdx = idx;
+      }
+    });
+
+
+    let targetIdx;
+    if (sibling) {
       origLists.forEach((list, idx) => {
-        if (list.id === parseInt(el.dataset.id)) {
-          originalIdx = idx;
+        if (list.id === parseInt(sibling.dataset.id)) {
+          targetIdx = idx;
         }
       });
-
-
-      let targetIdx;
-      if (sibling) {
-        origLists.forEach((list, idx) => {
-          if (list.id === parseInt(sibling.dataset.id)) {
-            targetIdx = idx;
-          }
-        });
-        if (targetIdx > 0 && originalIdx < targetIdx) {
-          targetIdx -= 1;
-        }
-      } else {
-        targetIdx = origLists.length - 1;
+      if (targetIdx > 0 && originalIdx < targetIdx) {
+        targetIdx -= 1;
       }
+    } else {
+      targetIdx = origLists.length - 1;
+    }
 
-      let newPosition = positionCalculator(this.props.lists, targetIdx, originalIdx);
-      store.dispatch(actions.updateList(el.dataset.title, el.dataset.id, newPosition));
-    });
+    let newPosition = positionCalculator(this.props.lists, targetIdx, originalIdx);
+    store.dispatch(actions.updateList(el.dataset.title, el.dataset.id, newPosition));
   }
 
   componentWillUnmount() {

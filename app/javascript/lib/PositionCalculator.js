@@ -1,4 +1,8 @@
 export default function PositionCalculator(items, targetIndex, originalIndex) {
+  console.log("target index");
+  console.log(targetIndex);
+  console.log("original index");
+  console.log(originalIndex);
   const itemsClone = items.slice();
   const isOnly = itemsClone.length === 0;
   const isFirst = targetIndex === 0;
