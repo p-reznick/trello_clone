@@ -28,7 +28,8 @@ class BoardView extends React.Component {
 
   render() {
     return (
-      <ListsDashboard lists={this.allLists()}/>
+      // <ListsDashboard lists={this.allLists()}/>
+      <ListsDashboard board_id={this.props.match.params.id} lists={this.allLists()} />
     )
   }
 }

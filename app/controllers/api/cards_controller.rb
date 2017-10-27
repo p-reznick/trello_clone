@@ -19,6 +19,8 @@ class Api::CardsController < ApplicationController
     @card = Card.new(new_params)
 
     if @card.save
+      @board_id = List.find(@card.list_id).board_id
+      # @card[:board_id] = board_id
       render :create, status: :created
     else
       @error = @card.errors.full_messages.join(', ')

@@ -8,10 +8,12 @@ export default function cardsReducer(state = [], action) {
     console.log(newState);
     return newState;
   } else if (action.type === 'FETCH_LISTS_SUCCESS') {
+    console.log("In cards reducer: FETCH_LISTS_SUCCESS branch");
     let newCards = [];
     action.lists.forEach((list) => {
       newCards = newCards.concat(list.cards);
     });
+    console.log(newCards);
     return newCards;
   } else {
     return state;

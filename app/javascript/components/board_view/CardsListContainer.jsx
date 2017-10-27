@@ -21,10 +21,21 @@ class CardsListContainer extends React.Component {
     console.log(nextProps);
   }
 
+  getCards = () => {
+    const store = this.context.store;
+    const storeCards = store.getState().cards;
+    console.log("IN CardsListContainer:");
+    console.log(storeCards);
+    return storeCards.filter(card => (
+      (card.list_id === +this.props.list_id) && (card.board_id === +this.props.board_id)
+    ));
+  }
+
   render() {
+    const cards = this.getCards();
     return (
       <div id="cards-container">
-        {this.props.cards.map((card, idx) => (
+        {cards.map((card, idx) => (
           <CardView key={idx} title={card.title} />
         ))}
       </div>

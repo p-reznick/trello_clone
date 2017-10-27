@@ -78,7 +78,7 @@ class ListItem extends React.Component {
           <div className="list">
             <a className="more-icon sm-icon" href=""></a>
             <div>{this.getListTitleOutput()}</div>
-            <CardsListContainer cards={this.props.cards} />
+            <CardsListContainer board_id={this.props.board_id} list_id={this.props.list_id} />
             <ToggleableAddCard list_id={this.props.list_id} />
           </div>
         </div>

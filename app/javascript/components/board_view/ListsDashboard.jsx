@@ -60,7 +60,7 @@ class ListsDashboard extends React.Component {
         <div id="existing-lists" className="existing-lists">
               {sortedList.map((list_item, idx) => {
                 return (
-                  <ListItem key={idx} position={list_item.position} title={list_item.title} list_id={list_item.id} cards={list_item.cards} position={list_item.position} />
+                  <ListItem key={idx} board_id={this.props.board_id} position={list_item.position} title={list_item.title} list_id={list_item.id} position={list_item.position} />
                 );
               })}
         </div>
