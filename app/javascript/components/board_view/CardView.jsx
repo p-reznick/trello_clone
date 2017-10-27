@@ -18,7 +18,7 @@ class CardView extends React.Component {
 
   render() {
     return (
-      <div className="card-background" data-id={this.props.id}>
+      <div className="card-background" data-title={this.props.title} data-position={this.props.position} data-id={this.props.id}>
         <div className="card">
           <div className="card-info">
             <p>{this.props.title}</p>

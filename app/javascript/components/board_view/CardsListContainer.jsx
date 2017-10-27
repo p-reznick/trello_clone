@@ -13,7 +13,8 @@ class CardsListContainer extends React.Component {
   componentDidMount() {
     const store = this.context.store;
     this.unsubscribe = store.subscribe(() => this.forceUpdate());
-    var container = ReactDOM.findDOMNode(document.querySelector("#cards-container"));
+    var attribute_selector = "[data-id='list-" + this.props.list_id + "-cards']";
+    var container = ReactDOM.findDOMNode(document.querySelector(attribute_selector));
     const dragula = Dragula([container]);
     dragula.on('drop', this.dragulaHelper);
   }
@@ -45,6 +46,7 @@ class CardsListContainer extends React.Component {
     }
 
     let newPosition = positionCalculator(origCards, targetIdx, originalIdx);
+    console.log(el.dataset.title, el.dataset.id, el.dataset.position);
     // store.dispatch(actions.updateCard(el.dataset.title, el.dataset.id, newPosition));
   };
 
@@ -62,10 +64,11 @@ class CardsListContainer extends React.Component {
 
   render() {
     const cards = this.getCards();
+    const dataIdValue = "list-" + `${this.props.list_id}` + "-cards";
     return (
-      <div id="cards-container">
+      <div id="cards-container" data-id={dataIdValue}>
         {cards.map((card, idx) => (
-          <CardView key={idx} title={card.title} id={card.id} />
+          <CardView key={idx} position={card.position} title={card.title} id={card.id} />
         ))}
       </div>
 
