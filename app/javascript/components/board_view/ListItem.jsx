@@ -13,8 +13,6 @@ class ListItem extends React.Component {
   componentDidMount() {
     const store = this.context.store;
     this.unsubscribe = store.subscribe(() => this.forceUpdate());
-    console.log("STORE:");
-    console.log(store.getState());
   }
 
   componentWillUnmount() {
@@ -49,7 +47,6 @@ class ListItem extends React.Component {
     this.setState({
      newTitle: e.target.value
     });
-    console.log(this.state);
   }
 
   getListTitleOutput = () => {
@@ -66,10 +63,6 @@ class ListItem extends React.Component {
     }
   }
 
-  componentWillReceiveProps = (nextProps) => {
-    console.log("listItem receiving props");
-    console.log(nextProps);
-  }
 
   render() {
     return (
