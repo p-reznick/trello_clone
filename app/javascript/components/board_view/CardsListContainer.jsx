@@ -13,16 +13,16 @@ class CardsListContainer extends React.Component {
   componentDidMount() {
     const store = this.context.store;
     this.unsubscribe = store.subscribe(() => this.forceUpdate());
-    var attribute_selector = "[data-id='list-" + this.props.list_id + "-cards']";
+    // var attribute_selector = "[data-id='list-" + this.props.list_id + "-cards']";
 
-    var container = ReactDOM.findDOMNode(document.querySelector(attribute_selector));
-    // const dragula = Dragula([container]);
-    // dragula.on('drop', this.dragulaHelper);
+    // var container = ReactDOM.findDOMNode(document.querySelector(attribute_selector));
+    // // const dragula = Dragula([container]);
+    // // dragula.on('drop', this.dragulaHelper);
 
-    var containers = Array.prototype.slice.call(document.querySelectorAll("[data-id^='list-']"));
-
-    const dragula = Dragula(containers);
-    dragula.on('drop', this.dragulaHelperMain);
+    // var containers = Array.prototype.slice.call(document.querySelectorAll("[data-id^='list-']"));
+    // console.log("Dragula connected");
+    // const dragula = Dragula(containers);
+    // dragula.on('drop', this.dragulaHelperMain);
 
   }
 
@@ -31,14 +31,14 @@ class CardsListContainer extends React.Component {
     console.log(source);
     if (target === source) {
       console.log("if");
-      this.dragulaHelper(el, target, source, sibling);
+      this.dragulaHelperWithinList(el, target, source, sibling);
     } else {
       console.log("else");
       this.dragulaHelperAcrossLists(el, target, source, sibling);
     }
   }
 
-  dragulaHelper = (el, target, source, sibling) => {
+  dragulaHelperWithinList = (el, target, source, sibling) => {
     const store = this.context.store;
     const origCards = this.getCards();
 
@@ -70,12 +70,12 @@ class CardsListContainer extends React.Component {
 
   dragulaHelperAcrossLists = (el, target, source, sibling) => {
     console.log("Element:")
-    console.log(el);
     console.log("Target");
-    console.log(target);
     console.log("Source");
-    console.log(source);
     console.log("Sibling");
+    console.log(el);
+    console.log(target);
+    console.log(source);
     console.log(sibling);
 
     if (target.contains(sibling)) {
